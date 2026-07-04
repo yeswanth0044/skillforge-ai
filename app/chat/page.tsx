@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 import MessageBubble from "../../components/MessageBubble";
@@ -11,7 +11,7 @@ sender: "coach" | "user";
 text: string;
 }
 
-export default function ChatPage() {
+function ChatPageContent()  {
 const searchParams = useSearchParams();
 const router = useRouter();
 
@@ -258,4 +258,11 @@ return (
     </div>
   </main>
 );
+}
+export default function ChatPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ChatPageContent />
+    </Suspense>
+  );
 }

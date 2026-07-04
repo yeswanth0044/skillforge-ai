@@ -2,15 +2,14 @@
 import jsPDF from "jspdf";
 import Link from "next/link";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import ScoreCard from "@/components/ScoreCard";
 import StrengthsCard from "@/components/StrengthsCard";
 import ImprovementCard from "@/components/ImprovementCard";
 
-export default function ReportPage() {
-
+function ReportPageContent() {
   const searchParams = useSearchParams();
 
   const sessionId =
@@ -226,5 +225,12 @@ doc.save(
       </div>
 
     </main>
+  );
+}
+export default function ReportPage() {
+  return (
+    <Suspense fallback={<div>Loading Report...</div>}>
+      <ReportPageContent />
+    </Suspense>
   );
 }
