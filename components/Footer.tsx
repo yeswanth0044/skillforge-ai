@@ -110,7 +110,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-500">
 
-          © 2026 SkillForge AI Interview Coach • Built with ❤️ using Next.js, FastAPI & MongoDB
+          © 2026 SkillForge AI Interview Coach • Built using Next.js, FastAPI & MongoDB
 
         </div>
 
