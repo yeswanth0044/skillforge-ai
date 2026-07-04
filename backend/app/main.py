@@ -1,4 +1,3 @@
-from app.services.db import db
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,7 +11,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://YOUR-VERCEL-URL.vercel.app",
+        "https://skillforge-ai-i459-jet.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
