@@ -1,13 +1,16 @@
+import os
+from dotenv import load_dotenv
 from jose import jwt
 from datetime import datetime, timedelta
 
-SECRET_KEY = "kaizen_super_secret_key"
+load_dotenv()
+
+SECRET_KEY = os.getenv("JWT_SECRET")
 
 ALGORITHM = "HS256"
 
 
 def create_access_token(data):
-
     payload = data.copy()
 
     payload["exp"] = (
