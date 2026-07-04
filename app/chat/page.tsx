@@ -63,40 +63,55 @@ useEffect(() => {
   });
 }, [messages, loading]);
 const startSession = async () => {
-try {
-const response = await fetch(
-"http://localhost:8000/start-session",
-{
-method: "POST",
-headers: {
-"Content-Type": "application/json",
-},
-body: JSON.stringify({
-  scenario,
-  email: localStorage.getItem("email")
-}),
-}
-);
+  try {
 
+    const email = localStorage.getItem("email");
 
-  const data = await response.json();
-
-  setSessionId(data.session_id);
-
-  setMessages([
-    {
-      sender: "coach",
-      text: data.question,
-    },
-  ]);
-
-  speakQuestion(data.question);
-
-} catch (error) {
-  console.error(error);
+if (!email) {
+  alert("Please login first.");
+  router.push("/login");
+  return;
 }
 
+    const payload = {
+      scenario,
+      email: localStorage.getItem("email"),
+    };
 
+    console.log("Sending:", payload);
+
+    const response = await fetch(
+      "http://localhost:8000/start-session",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("Status:", response.status);
+    console.log("Response:", data);
+
+    if (!response.ok) return;
+
+    setSessionId(data.session_id);
+
+    setMessages([
+      {
+        sender: "coach",
+        text: data.question,
+      },
+    ]);
+
+    speakQuestion(data.question);
+
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const sendMessage = async (

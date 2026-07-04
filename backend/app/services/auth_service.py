@@ -10,6 +10,7 @@ def create_user(name, email, password):
     })
 
     if existing:
+        print("User already exists")
         return None
 
     hashed_password = bcrypt.hashpw(
@@ -23,7 +24,9 @@ def create_user(name, email, password):
         "password": hashed_password.decode()
     }
 
-    users_collection.insert_one(user)
+    result = users_collection.insert_one(user)
+
+    print("Inserted ID:", result.inserted_id)
 
     return user
 
