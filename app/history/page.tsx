@@ -9,7 +9,7 @@ export default function HistoryPage() {
   const email = localStorage.getItem("email");
 
 fetch(
-  `http://localhost:8000/history/${email}`
+  `${process.env.NEXT_PUBLIC_API_URL}/history/${email}`
 )
   .then((res) => res.json())
   .then((data) => {
@@ -212,7 +212,7 @@ fetch(
       if (!confirmDelete) return;
 
       await fetch(
-        `http://localhost:8000/history/${item._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/history/${item._id}`,
         {
           method: "DELETE",
         }

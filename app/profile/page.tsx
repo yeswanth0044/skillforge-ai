@@ -35,7 +35,7 @@ export default function ProfilePage() {
   localStorage.getItem("email");
 
 fetch(
-  `http://localhost:8000/dashboard/${userEmail}`
+  `${process.env.NEXT_PUBLIC_API_URL}/dashboard/${userEmail}`
 )
   .then((res) => res.json())
   .then((data) => {

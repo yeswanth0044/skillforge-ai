@@ -81,7 +81,7 @@ if (!email) {
     console.log("Sending:", payload);
 
     const response = await fetch(
-      "http://localhost:8000/start-session",
+      `${process.env.NEXT_PUBLIC_API_URL}/start-session`,
       {
         method: "POST",
         headers: {
@@ -134,7 +134,7 @@ setLoading(true);
 
 try {
   const response = await fetch(
-    "http://localhost:8000/chat",
+    `${process.env.NEXT_PUBLIC_API_URL}/chat`,
     {
       method: "POST",
       headers: {

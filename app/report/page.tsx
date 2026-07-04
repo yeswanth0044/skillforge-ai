@@ -24,7 +24,7 @@ useEffect(() => {
 if (!sessionId) return;
 
 fetch(
-`http://127.0.0.1:8000/feedback/${sessionId}`
+`${process.env.NEXT_PUBLIC_API_URL}/feedback/${sessionId}`
 )
 .then((res) => res.json())
 .then((data) => {
